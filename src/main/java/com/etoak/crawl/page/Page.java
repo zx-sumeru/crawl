@@ -30,9 +30,15 @@ public class Page {
     public String getCharset() {
         return charset;
     }
-    public String getUrl(){return url ;}
-    public String getContentType(){ return contentType ;}
-    public byte[] getContent(){ return content ;}
+    public String getUrl(){
+        return url ;
+    }
+    public String getContentType(){
+        return contentType ;
+    }
+    public byte[] getContent(){
+        return content ;
+    }
 
     /**
      * 返回网页的源码字符串
@@ -66,6 +72,7 @@ public class Page {
             return doc;
         }
         try {
+            //Parse HTML into a Document. The parser will make a sensible, balanced document tree out of any HTML.
             this.doc = Jsoup.parse(getHtml(), url);
             return doc;
         } catch (Exception ex) {

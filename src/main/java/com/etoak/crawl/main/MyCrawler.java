@@ -39,10 +39,7 @@ public class MyCrawler {
         //定义过滤器，提取以 http://www.baidu.com 开头的链接
         LinkFilter filter = new LinkFilter() {
             public boolean accept(String url) {
-                if (url.startsWith("http://www.baidu.com"))
-                    return true;
-                else
-                    return false;
+                return url.startsWith("https://www.lagou.com/jobs/");
             }
         };
 
@@ -72,7 +69,7 @@ public class MyCrawler {
             Links.addVisitedUrlSet(visitUrl);
 
             //得到超链接
-            Set<String> links = PageParserTool.getLinks(page,"img");
+            Set<String> links = PageParserTool.getLinks(page,"list_item_top");
             for (String link : links) {
                 Links.addUnvisitedUrlQueue(link);
                 System.out.println("新增爬取路径: " + link);
@@ -81,9 +78,10 @@ public class MyCrawler {
     }
 
 
+    private static final String LA_GOU_WANG = "https://www.lagou.com/jobs/list_Java";
     //main 方法入口
     public static void main(String[] args) {
         MyCrawler crawler = new MyCrawler();
-        crawler.crawling(new String[]{"http://www.baidu.com"});
+        crawler.crawling(new String[]{LA_GOU_WANG});
     }
 }
